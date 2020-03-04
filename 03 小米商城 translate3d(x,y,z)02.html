@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>仿小米商城 translate3d(x,y,z)效果</title>
+  <link rel="stylesheet" href="../css/reset.css"/>
+  <style type="text/css">
+    body{
+      background-color: rgb(245,245,245);
+    }
+    /*外部容器 样式*/
+    .outer{
+      width: 235px;
+      /*设置高度，不包含用户评价部分的高度*/
+      height:316px ;
+      /*默认隐藏用户评价部分，鼠标悬停滑出*/
+      overflow: hidden;
+      background-color: rgb(255,255,255);
+      margin: 15px auto;
+      /*评价部分需要定位*/
+      position: relative;
+    }
+    /*顶部图片容器的样式*/
+    .outer>.top{
+      margin-bottom:15px ;
+      padding: 30px;
+      padding-bottom: 0;
+    }
+    /*顶部图片样式*/
+    .outer>.top img{
+      width: 175px;
+      height: 175px;
+    }
+    /*底部容器*/
+    .outer>.bottom{
+      width: 175px;
+      padding:0 30px 20px;
+    }
+    /*商品标题*/
+    .bottom .info_title{
+      width: 175px;
+      height: 20px;
+      margin-bottom:5px ;
+      text-align: center;
+      line-height: 20px;
+    }
+    .bottom .info_title a{
+      font-size: 16px;
+      font-weight: normal;
+      font-family: "Microsoft YaHei", georgia, serif, sans-serif;
+    }
+    /*商品简介*/
+    .bottom p.info_text{
+      margin-bottom: 15px;
+      font-size: 12px;
+      font-weight: normal;
+      font-family: "Microsoft YaHei", georgia, serif, sans-serif;
+      color: rgb(163,163,163);
+    }
+    /*商品价格*/
+    p.price{
+      width: 175px;
+      height:20px ;
+      font-size: 14px;
+      font-family: "Microsoft YaHei", georgia, serif, sans-serif;
+      text-align: center;
+      line-height: 20px;
+    }
+    span.nowprice{
+      color: red;
+    }
+    span.nowprice>strong{
+      font-weight: normal;
+    }
+    span.prePrice{
+      color: #bbbbbb;
+      text-decoration: line-through;
+      text-decoration-color: #bbbbbb;
+    }
+
+    /*设计思路：
+     * 1.默认情况下，用户评价部分 不显示：
+     *   - 最外层容器.outer的高度不包含用户评价部分的高度；
+     *   - 为.outer容器设置overflow：hidden
+     * 2.当鼠标悬停时，从底部滑出：
+     *   - 距离容器.outer底部bottom：由-height-->height
+     */
+    a.user{
+      width: 175px;
+      height: 52px;
+      padding: 8px 30px 10px;
+      position: absolute;
+      /*默认不显示*/
+      bottom: -70px;
+    }
+    .outer:hover{
+      transform: translate3d(0px,-3px,0);
+      transition: 2s;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    /*评价内容*/
+    /*默认不显示*/
+
+    p.user_text{
+      width: 175px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: white;
+      font-family: "Microsoft YaHei", georgia, serif, sans-serif;
+      text-align: left;
+      line-height: 15px;
+    }
+    p.user_info{
+      width: 175px;
+      font-size: 11px;
+      color: white;
+      opacity: 0.8;
+      filter:alpha(opacity=80);
+      font-family: "Microsoft YaHei", georgia, serif, sans-serif;
+    }
+
+    /*鼠标悬停时显示*/
+    .outer:hover .user{
+      background-color: rgb(255,103,0);
+      transition: 0.5s;
+      position: absolute;
+      bottom:0;
+      z-index: 999;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <div class="top"><a href="#"><img src="../img/pms_phc!220x220.png" alt=""/></a></div>
+    <div class="bottom">
+      <h3 class="info_title"><a href="#">九号平衡车&nbsp;Plus</a></h3>
+      <p class="info_text">35km超长续航，一键自动跟随</p>
+      <p class="price">
+        <span class="nowprice"><strong>3399</strong>元</span>
+        <span class="prePrice">3499元</span>
+      </p>
+    </div>
+
+    <!--滑出部分-->
+    <a class="user">
+      <p class="user_text">女儿的玩具了，到手2分钟学会，在商场溜，即使很多人的...</p>
+      <p class="user_info">来自于&nbsp;<span>小米小店(阿涛)</span>&nbsp;的评价</p>
+    </a>
+  </div>
+</body>
+</html>
